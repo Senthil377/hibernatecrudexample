@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.demo.dao.UserDAO;
+import com.example.demo.dao.impl.UserDAOImpl;
 import com.example.demo.entity.User;
 
 @RestController
@@ -37,12 +38,13 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/create", headers = "Accept=application/json")
-	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+	public String saveUser(@RequestBody User user) {// , UriComponentsBuilder ucBuilder
 		System.out.println("Creating User " + user.getFirstName());
-		userService.addUser(user);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		return userService.savePerson(user);
+		// HttpHeaders headers = new HttpHeaders();
+		// headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+		// return "Success";
+		// new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/get", headers = "Accept=application/json")

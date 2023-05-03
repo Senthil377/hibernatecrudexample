@@ -40,6 +40,21 @@ public class UserDAOImpl implements UserDAO {
 		session.save(user);
 	}
 
+	private Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
+	@Override
+	public String savePerson(User person) {
+		int isSuccess = (int) getSession().save(person);
+		if (isSuccess >= 1) {
+			return "Success";
+		} else {
+			return "Error while Saving Person";
+		}
+
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -51,8 +66,8 @@ public class UserDAOImpl implements UserDAO {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<User> criteria = builder.createQuery(User.class);
-	    Root<User> myObjectRoot = criteria.from(User.class);
-	    criteria.select(myObjectRoot);
+		Root<User> myObjectRoot = criteria.from(User.class);
+		criteria.select(myObjectRoot);
 		TypedQuery<User> query = session.createQuery(criteria);
 		return query.getResultList();
 	}

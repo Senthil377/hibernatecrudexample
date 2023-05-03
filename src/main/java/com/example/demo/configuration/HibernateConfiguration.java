@@ -5,8 +5,10 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -42,7 +44,7 @@ public class HibernateConfiguration {
 	@Value("${hibernate.show_sql}")
 	private String HIBERNATE_SHOW_SQL;
 
-	@Value("${hibernate.hbm2ddl.auto}")
+	@Value("${hibernate.ddl-auto}")
 	private String HIBERNATE_HBM2DDL_AUTO;
 
 	@Bean
@@ -53,7 +55,7 @@ public class HibernateConfiguration {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
 		hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
-		hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
+		//hibernateProperties.put("hibernate.ddl-auto", HIBERNATE_HBM2DDL_AUTO);
 		sessionFactory.setHibernateProperties(hibernateProperties);
 		return sessionFactory;
 	}

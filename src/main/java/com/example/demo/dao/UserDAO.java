@@ -22,4 +22,6 @@ public interface UserDAO {
 	public User update(User user, int id);
 
 	public void delete(int id);
+	
+	public String savePerson(User person);
 }
