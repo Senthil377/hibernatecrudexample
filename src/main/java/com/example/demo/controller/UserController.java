@@ -22,7 +22,7 @@ import com.example.demo.dao.impl.UserDAOImpl;
 import com.example.demo.entity.User;
 
 @RestController
-@RequestMapping(value = { "/user" })
+@RequestMapping(value ="/user")
 public class UserController {
 	@Autowired
 	UserDAO userService;
@@ -37,7 +37,7 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/create", headers = "Accept=application/json")
+	@PostMapping(value = "/create")
 	public String saveUser(@RequestBody User user) {// , UriComponentsBuilder ucBuilder
 		System.out.println("Creating User " + user.getFirstName());
 		return userService.savePerson(user);

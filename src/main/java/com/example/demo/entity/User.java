@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.example.demo.entity;
 
 import javax.persistence.Column;
@@ -10,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author kloudone
- *
- */
 @Entity
 @Table(name="users")
 public class User {
